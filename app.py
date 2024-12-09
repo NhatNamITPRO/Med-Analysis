@@ -105,7 +105,6 @@ def predict():
             temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".png")
             img.save(temp_file, format="PNG")
             temp_file.close()
-
             client = Client("NhatNam214/SegformerISIC2018")
             try:
                 result = client.predict(
@@ -131,4 +130,5 @@ def predict():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
